@@ -49,8 +49,8 @@ const loginUser = async (req, res) => {
   );
   // persist the token as 'token' in cookie with expiry date
   res.cookie("token", token, { expire: process.env.JWT_SECRET_EXPIRE });
-  res.password = undefined;
-  return res.json({ token, user });
+
+  return res.json({ token, user, message: "Login Successfully" });
 };
 
 const logOut = (req, res, next) => {
@@ -64,9 +64,8 @@ const logOut = (req, res, next) => {
   });
 };
 
-const getUserDetails = async (req, res, next) => {
+const getUserDetails = async (req, res) => {
   const user = await User.findById(req.user.id);
-
   res.status(200).json({
     success: true,
     user,
