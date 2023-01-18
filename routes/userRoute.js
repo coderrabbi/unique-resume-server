@@ -21,5 +21,6 @@ router.route("/password/forgot").post(forgotPassword);
 router.route("/resetpassword/:token").put(resetPassword);
 router.route("/user-details").get(isAuthenticatedUser, getUserDetails);
 router.route("/allusers").get(allUser);
+// router.route("/").get("server is runnig");
 
 module.exports = router;
