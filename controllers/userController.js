@@ -98,7 +98,10 @@ const forgotPassword = async (req, res) => {
   const user = await User.findOne({ email: req.body.email });
 
   if (!user) {
-    res.status(400).json("user not found");
+    res.status(400).json({
+      success: false,
+      message: `user not found`,
+    });
   }
 
   // Get ResetPassword Token
