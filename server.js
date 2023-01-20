@@ -28,6 +28,13 @@ mongoose.connect(
 
 // routes
 app.use("/api/", userRoute);
+// serve up production assets
+const path = require("path");
+app.use(express.static(path.join(__dirname, "..", "build")));
+app.use(express.static("public"));
+app.use((req, res, next) => {
+  res.sendFile(path.join(__dirname, "..", "build", "index.html"));
+});
 
 const PORT = process.env.SERVER_PORT || 5000;
 
