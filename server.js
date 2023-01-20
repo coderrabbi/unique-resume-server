@@ -3,13 +3,14 @@ const app = express();
 require("dotenv").config();
 const cors = require("cors");
 const bodyParser = require("body-parser");
+const corsOptions = require("./config/corsOption");
 const mongoose = require("mongoose");
 const cookieParser = require("cookie-parser");
 const userRoute = require("./routes/userRoute");
 
 // middlewere
 
-app.use(cors());
+app.use(cors(corsOptions));
 app.use(bodyParser.json());
 app.use(cookieParser());
 
@@ -30,6 +31,7 @@ mongoose.connect(
 app.use("/api/", userRoute);
 // serve up production assets
 const path = require("path");
+
 app.use(express.static(path.join(__dirname, "..", "build")));
 app.use(express.static("public"));
 app.use((req, res, next) => {
