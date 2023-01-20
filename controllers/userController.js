@@ -22,7 +22,13 @@ const registerUser = async (req, res) => {
       if (err) {
         res.status(400).send({ err: err.message });
       }
-      return res.json({ token, user });
+      return res.json({
+        token,
+        user,
+
+        success: true,
+        message: "Register Successfull",
+      });
     });
   }
 };
@@ -50,7 +56,7 @@ const loginUser = async (req, res) => {
   // persist the token as 'token' in cookie with expiry date
   res.cookie("token", token, { expire: process.env.JWT_SECRET_EXPIRE });
 
-  return res.json({ token, user, message: "Login Successfully" });
+  return res.json({ token, user, message: "Login Successfull" });
 };
 
 const logOut = (req, res, next) => {
@@ -66,6 +72,12 @@ const logOut = (req, res, next) => {
 
 const getUserDetails = async (req, res) => {
   const user = await User.findById(req.user.id);
+  if (!user) {
+    res.status(404).json({
+      success: false,
+      message: "User not login",
+    });
+  }
   res.status(200).json({
     success: true,
     user,
