@@ -25,9 +25,6 @@ const registerUser = async (req, res) => {
       return res.json({
         token,
         user,
-
-        success: true,
-        message: "Register Successfull",
       });
     });
   }
@@ -49,14 +46,19 @@ const loginUser = async (req, res) => {
   if (!isPasswordMatch) {
     return res.status(401).json({ message: "Invalid email or password" });
   }
-  const token = jwt.sign(
-    { _id: user._id, name: user.name },
-    process.env.JWT_SECRET_KEY
-  );
+  // const token = jwt.sign(
+  //   { _id: user._id, name: user.name },
+  //   process.env.JWT_SECRET_KEY
+  // );
   // persist the token as 'token' in cookie with expiry date
-  res.cookie("token", token, { expire: process.env.JWT_SECRET_EXPIRE });
+  // res.cookie("token", token, { expire: process.env.JWT_SECRET_EXPIRE });
+  const token = jwt.sign({ _id: user._id }, process.env.JWT_SECRET_KEY);
 
-  return res.json({ token, user, message: "Login Successfull" });
+  res.cookie("token", token, { expire: new Date() + 9999 });
+  res.password = undefined;
+  return res.json({ token, user });
+
+  // return res.json({ token, user, message: "Login Successfull" });
 };
 
 const logOut = (req, res, next) => {
