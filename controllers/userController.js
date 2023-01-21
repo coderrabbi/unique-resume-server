@@ -14,18 +14,16 @@ const registerUser = async (req, res) => {
       userName,
       name,
     });
-    const token = jwt.sign({ _id: user._id }, process.env.JWT_SECRET_KEY);
-    // persist the token as 'token' in cookie with expiry date
-    res.cookie("token", token, { expire: process.env.JWT_EXPIRE });
+    const token = jwt.sign(
+      { _id: user._id, name: user.name },
+      process.env.JWT_SECRET_KEY
+    );
 
     await user.save((err, user) => {
       if (err) {
         res.status(400).send({ err: err.message });
       }
-      return res.json({
-        token,
-        user,
-      });
+      return res.json({ token, user, message: "Register Successfull" });
     });
   }
 };
@@ -46,19 +44,12 @@ const loginUser = async (req, res) => {
   if (!isPasswordMatch) {
     return res.status(401).json({ message: "Invalid email or password" });
   }
-  // const token = jwt.sign(
-  //   { _id: user._id, name: user.name },
-  //   process.env.JWT_SECRET_KEY
-  // );
-  // persist the token as 'token' in cookie with expiry date
-  // res.cookie("token", token, { expire: process.env.JWT_SECRET_EXPIRE });
-  const token = jwt.sign({ _id: user._id }, process.env.JWT_SECRET_KEY);
 
-  res.cookie("token", token, { expire: new Date() + 9999 });
-  res.password = undefined;
-  return res.json({ token, user });
-
-  // return res.json({ token, user, message: "Login Successfull" });
+  const token = jwt.sign(
+    { _id: user._id, name: user.name },
+    process.env.JWT_SECRET_KEY
+  );
+  return res.json({ token, user, message: "Login Successfull" });
 };
 
 const logOut = (req, res, next) => {
@@ -73,11 +64,17 @@ const logOut = (req, res, next) => {
 };
 
 const getUserDetails = async (req, res) => {
-  const user = await User.findById(req.user.id);
-  res.status(200).json({
-    success: true,
-    user,
-  });
+  try {
+    const user = await User.findById(req.user.id);
+    res.status(200).json({
+      success: true,
+      user,
+    });
+  } catch (error) {
+    {
+      console.log(error);
+    }
+  }
 };
 
 // change password
