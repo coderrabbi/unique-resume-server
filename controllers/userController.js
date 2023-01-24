@@ -166,6 +166,18 @@ const resetPassword = async (req, res) => {
   });
 };
 
+const updateProfile = async (req, res) => {
+  console.log(req.user._id);
+  try {
+    await User.findOneAndUpdate({ _id: req.user._id }, req.body);
+    const user = await User.findOne({ _id: req.user._id });
+    console.log(user);
+    res.status(200).json(user);
+  } catch (error) {
+    res.status(400).json(error);
+  }
+};
+
 const allUser = async (req, res) => {
   const query = {};
   const cursor = await User.find(query);
@@ -181,6 +193,7 @@ module.exports = {
   registerUser,
   allUser,
   getUserDetails,
+  updateProfile,
   logOut,
   changePassword,
   resetPassword,

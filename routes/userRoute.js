@@ -8,6 +8,7 @@ const {
   changePassword,
   forgotPassword,
   resetPassword,
+  updateProfile,
 } = require("../controllers/userController");
 const { isAuthenticatedUser } = require("../middleware/auth");
 const { userSignupValidator } = require("../middleware/validator");
@@ -19,6 +20,7 @@ router.route("/logout").get(logOut);
 router.route("/changepassword").put(isAuthenticatedUser, changePassword);
 router.route("/password/forgot").post(forgotPassword);
 router.route("/resetpassword/:token").put(resetPassword);
+router.route("/update-profile").put(isAuthenticatedUser, updateProfile);
 router.route("/user-details").get(isAuthenticatedUser, getUserDetails);
 router.route("/allusers").get(allUser);
 // router.route("/").get("server is runnig");
