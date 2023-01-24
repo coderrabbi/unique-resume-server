@@ -11,14 +11,14 @@ const registerUser = async (req, res) => {
     user = new User({
       email,
       password,
-      userName,
       name,
+      userName,
     });
     const token = jwt.sign(
       { _id: user._id, name: user.name },
       process.env.JWT_SECRET_KEY
     );
-
+    console.log(token);
     await user.save((err, user) => {
       if (err) {
         res.status(400).send({ err: err.message });
