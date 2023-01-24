@@ -7,6 +7,7 @@ const corsOptions = require("./config/corsOption");
 const mongoose = require("mongoose");
 const cookieParser = require("cookie-parser");
 const userRoute = require("./routes/userRoute");
+const cvRoute = require("./routes/cvRoute");
 
 // middlewere
 
@@ -29,6 +30,7 @@ mongoose.connect(
 
 // routes
 app.use("/api/", userRoute);
+app.use("/api/", cvRoute);
 
 const PORT = process.env.SERVER_PORT || 5000;
 
