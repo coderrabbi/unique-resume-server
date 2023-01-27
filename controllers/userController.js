@@ -49,6 +49,7 @@ const loginUser = async (req, res) => {
     { _id: user._id, name: user.name },
     process.env.JWT_SECRET_KEY
   );
+  res.cookie("coToken", token);
   return res.json({ token, user, message: "Login Successfull" });
 };
 
@@ -171,7 +172,6 @@ const updateProfile = async (req, res) => {
   try {
     await User.findOneAndUpdate({ _id: req.user._id }, req.body);
     const user = await User.findOne({ _id: req.user._id });
-    console.log(user);
     res.status(200).json(user);
   } catch (error) {
     res.status(400).json(error);
