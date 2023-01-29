@@ -1,6 +1,10 @@
 const mongoose = require("mongoose");
 
 const coverLetterTemplateSchema = new mongoose.Schema({
+  user: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User",
+  },
   personalDetails: {
     type: Array,
     default: [],
