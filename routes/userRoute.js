@@ -1,4 +1,10 @@
 const express = require("express");
+const {
+  createSubscription,
+  addNewCustomer,
+  createCheckout,
+  createCheckoutSession,
+} = require("../controllers/paymentController");
 
 const {
   registerUser,
@@ -24,6 +30,8 @@ router.route("/resetpassword/:token").put(resetPassword);
 router.route("/update-profile").put(isAuthenticatedUser, updateProfile);
 router.route("/user-details").get(isAuthenticatedUser, getUserDetails);
 router.route("/allusers").get(allUser);
+// router.route("/subscription").post(isAuthenticatedUser, addNewCustomer);
+router.route("/checkout").post(isAuthenticatedUser, createCheckoutSession);
 // router.route("/").get("server is runnig");
 
 module.exports = router;

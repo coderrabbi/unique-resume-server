@@ -168,9 +168,13 @@ const resetPassword = async (req, res) => {
 };
 
 const updateProfile = async (req, res) => {
-  console.log(req.user._id);
+  console.log(req.body);
   try {
-    await User.findOneAndUpdate({ _id: req.user._id }, req.body);
+    await User.findOneAndUpdate(
+      { _id: req.user._id },
+      { $set: req.body },
+      { new: true, upsert: true, setDefaultsOnInsert: true }
+    );
     const user = await User.findOne({ _id: req.user._id });
     res.status(200).json(user);
   } catch (error) {

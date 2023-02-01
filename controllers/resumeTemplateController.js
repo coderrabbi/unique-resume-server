@@ -10,7 +10,7 @@ const allResumeTemplate = async (req, res) => {
   }
 };
 
-const reusmeTemplate = async (req, res) => {
+const createReusmeTemplate = async (req, res) => {
   try {
     let template = await ResumeTemplate.findOneAndUpdate(
       {
@@ -25,7 +25,11 @@ const reusmeTemplate = async (req, res) => {
   }
 
   // const user = req.user._id;
-  // const cvInformation = await CVtemplate.create({req.body},{ new: true, upsert: true, setDefaultsOnInsert: true });
+  // const cvInformation = await ResumeTemplate.create(req.body, {
+  //   new: true,
+  //   upsert: true,
+  //   setDefaultsOnInsert: true,
+  // });
   // res.status(201).json({
   //   success: true,
   //   user,
@@ -75,7 +79,7 @@ const resumeTemplateDelete = async (req, res) => {
 };
 module.exports = {
   allResumeTemplate,
-  reusmeTemplate,
+  createReusmeTemplate,
   updateResume,
   getResumeTemplate,
   resumeTemplateDelete,
