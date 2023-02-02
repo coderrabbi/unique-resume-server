@@ -182,6 +182,18 @@ const updateProfile = async (req, res) => {
   }
 };
 
+const deleteUser = async (req, res) => {
+  try {
+    const user = await User.findOne(req.user._id);
+    await user.remove();
+    res
+      .status(200)
+      .json({ success: true, message: "user deleted successfully" });
+  } catch (err) {
+    res.status(404).send(err);
+  }
+};
+
 const allUser = async (req, res) => {
   const query = {};
   const cursor = await User.find(query);
@@ -202,4 +214,5 @@ module.exports = {
   changePassword,
   resetPassword,
   forgotPassword,
+  deleteUser,
 };

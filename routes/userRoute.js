@@ -16,6 +16,7 @@ const {
   forgotPassword,
   resetPassword,
   updateProfile,
+  deleteUser,
 } = require("../controllers/userController");
 const { isAuthenticatedUser } = require("../middleware/auth");
 const { userSignupValidator } = require("../middleware/validator");
@@ -32,5 +33,6 @@ router.route("/user-details").get(isAuthenticatedUser, getUserDetails);
 router.route("/allusers").get(allUser);
 // router.route("/subscription").post(isAuthenticatedUser, addNewCustomer);
 router.route("/checkout").post(isAuthenticatedUser, createCheckoutSession);
+router.route("/user-delete").delete(isAuthenticatedUser, deleteUser);
 // router.route("/").get("server is runnig");
 module.exports = router;
