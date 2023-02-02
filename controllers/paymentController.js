@@ -9,7 +9,7 @@ const checkoutSession = async (req, res) => {
 };
 
 const createCheckoutSession = async (req, res) => {
-  const domainURL = "http://localhost:3000/checkout";
+  const domainURL = "https://unique-resume.vercel.app/checkout";
   const { priceId } = req.body;
   console.log(priceId);
   try {

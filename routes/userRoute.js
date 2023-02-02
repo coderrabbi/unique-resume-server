@@ -33,5 +33,4 @@ router.route("/allusers").get(allUser);
 // router.route("/subscription").post(isAuthenticatedUser, addNewCustomer);
 router.route("/checkout").post(isAuthenticatedUser, createCheckoutSession);
 // router.route("/").get("server is runnig");
-
 module.exports = router;
