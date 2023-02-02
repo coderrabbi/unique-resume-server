@@ -62,4 +62,22 @@ const getCvTemplate = async (req, res) => {
   }
 };
 
-module.exports = { allCvTemplate, cvTemplate, updateCv, getCvTemplate };
+const cvTemplateDelete = async (req, res) => {
+  const cv = await CVtemplate.findById(req.params.id);
+  if (!cv) {
+    return res.status(404).json("CV  not found");
+  }
+  await cv.remove();
+
+  res.status(200).json({
+    success: true,
+    message: "CV Delete Successfully",
+  });
+};
+module.exports = {
+  allCvTemplate,
+  cvTemplate,
+  updateCv,
+  getCvTemplate,
+  cvTemplateDelete,
+};
