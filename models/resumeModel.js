@@ -5,15 +5,27 @@ const resumeTemplateSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: "User",
   },
+  fname: {
+    type: String,
+    default: "",
+  },
+  lname: {
+    type: String,
+    default: "",
+  },
   email: {
     type: String,
     default: "",
   },
-  personalInformation: {
-    type: Array,
-    default: [],
+  address: {
+    type: String,
+    default: "",
   },
-  professionalSummary: {
+  jobTitle: {
+    type: String,
+    default: "",
+  },
+  education: {
     type: Array,
     default: [],
   },
@@ -21,11 +33,7 @@ const resumeTemplateSchema = new mongoose.Schema({
     type: Array,
     default: [],
   },
-  educationHistory: {
-    type: Array,
-    default: [],
-  },
-  websiteAndSocialLinks: {
+  websites: {
     type: Array,
     default: [],
   },
@@ -34,10 +42,10 @@ const resumeTemplateSchema = new mongoose.Schema({
     default: [],
   },
   hobbies: {
-    type: Array,
-    default: [],
+    type: String,
+    default: "",
   },
-  courses: {
+  references: {
     type: Array,
     default: [],
   },
@@ -49,9 +57,13 @@ const resumeTemplateSchema = new mongoose.Schema({
     type: Array,
     default: [],
   },
-  references: {
-    type: Array,
-    default: [],
+  professionalSummary: {
+    type: String,
+    default: "",
+  },
+  mobileNumber: {
+    type: String,
+    default: "",
   },
 });
 

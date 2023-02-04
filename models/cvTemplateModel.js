@@ -5,54 +5,33 @@ const cvTemplateSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: "User",
   },
-  email: {
+  name: {
     type: String,
     default: "",
   },
-  personalInformation: {
-    type: Array,
-    default: [],
-  },
-  professionalSummary: {
-    type: Array,
-    default: [],
-  },
-  employmentHistory: {
-    type: Array,
-    default: [],
-  },
-  educationHistory: {
-    type: Array,
-    default: [],
-  },
-  websiteAndSocialLinks: {
-    type: Array,
-    default: [],
-  },
-  skills: {
-    type: Array,
-    default: [],
-  },
-  hobbies: {
-    type: Array,
-    default: [],
-  },
-  courses: {
-    type: Array,
-    default: [],
-  },
-  internShips: {
-    type: Array,
-    default: [],
-  },
-  languages: {
-    type: Array,
-    default: [],
-  },
-  references: {
-    type: Array,
-    default: [],
-  },
+  email: { type: String, default: "" },
+  imageUrl: { type: String, default: "" },
+  mobileNumber: { type: String, default: "" },
+  fathersName: { type: String, default: "" },
+  mothersName: { type: String, default: "" },
+  dateOfBirth: { type: String, default: "" },
+  sex: { type: String, default: "" },
+  blood: { type: String, default: "" },
+  nationality: { type: String, default: "" },
+  religion: { type: String, default: "" },
+  maritalStatus: { type: String, default: "" },
+  nid: { type: String, default: "" },
+  portfolio: { type: String, default: "" },
+  address: { type: String, default: "" },
+  carrierObjective: { type: String, default: "" },
+  education: { type: Array, default: [] },
+  skills: { type: Array, default: [] },
+  experience: { type: Array, default: [] },
+  projects: { type: Array, default: [] },
+  presentAdd: { type: Array, default: [] },
+  permanentAdd: { type: Array, default: [] },
+  personalSkills: { type: Array, default: [] },
+  languageSkills: { type: Array, default: [] },
 });
 
 const CVtemplate = mongoose.model("CVTemplate", cvTemplateSchema);

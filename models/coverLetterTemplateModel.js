@@ -5,13 +5,33 @@ const coverLetterTemplateSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: "User",
   },
-  personalDetails: {
-    type: Array,
-    default: [],
+  fullname: {
+    type: String,
+    default: "",
   },
-  employerDetails: {
-    type: Array,
-    default: [],
+  jobTitle: {
+    type: String,
+    default: "",
+  },
+  address: {
+    type: String,
+    default: "",
+  },
+  email: {
+    type: String,
+    default: "",
+  },
+  mobileNumber: {
+    type: String,
+    default: "",
+  },
+  companyName: {
+    type: String,
+    default: "",
+  },
+  hiringManagerName: {
+    type: String,
+    default: "",
   },
   letterDetails: {
     type: String,
