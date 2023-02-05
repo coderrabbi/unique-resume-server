@@ -17,6 +17,7 @@ const {
   resetPassword,
   updateProfile,
   deleteUser,
+  userDelete,
 } = require("../controllers/userController");
 const { isAuthenticatedUser } = require("../middleware/auth");
 const { userSignupValidator } = require("../middleware/validator");
@@ -34,5 +35,5 @@ router.route("/allusers").get(allUser);
 // router.route("/subscription").post(isAuthenticatedUser, addNewCustomer);
 router.route("/checkout").post(isAuthenticatedUser, createCheckoutSession);
 router.route("/user-delete").delete(isAuthenticatedUser, deleteUser);
-// router.route("/").get("server is runnig");
+router.route("/delete-user/:id").delete(isAuthenticatedUser, userDelete);
 module.exports = router;

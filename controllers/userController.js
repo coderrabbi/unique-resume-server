@@ -194,6 +194,19 @@ const deleteUser = async (req, res) => {
   }
 };
 
+const userDelete = async (req, res) => {
+  const user = await User.findById(req.params.id);
+  if (!user) {
+    return res.status(404).json("user not found");
+  }
+  await user.remove();
+
+  res.status(200).json({
+    success: true,
+    message: "user Delete Successfully",
+  });
+};
+
 const allUser = async (req, res) => {
   const query = {};
   const cursor = await User.find(query);
@@ -215,4 +228,5 @@ module.exports = {
   resetPassword,
   forgotPassword,
   deleteUser,
+  userDelete,
 };
