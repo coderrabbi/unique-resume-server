@@ -33,6 +33,15 @@ const coverLetterUpdate = async (req, res) => {
     res.status(400).json(error);
   }
 };
+const coverLetters = async (req, res) => {
+  const query = {};
+  const cursor = await CoverLetter.find(query);
+  if (cursor) {
+    res.status(200).send(cursor);
+  } else {
+    res.status(404).send("faild to find data");
+  }
+};
 const coverLetterDelete = async (req, res) => {
   const coverLetter = await CoverLetter.findById(req.params.id);
   if (!coverLetter) {
@@ -46,4 +55,9 @@ const coverLetterDelete = async (req, res) => {
   });
 };
 
-module.exports = { createCoverLetter, coverLetterUpdate, coverLetterDelete };
+module.exports = {
+  createCoverLetter,
+  coverLetterUpdate,
+  coverLetterDelete,
+  coverLetters,
+};

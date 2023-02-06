@@ -1,5 +1,8 @@
 const express = require("express");
-const { coverLetterDelete } = require("../controllers/coverLetterController");
+const {
+  coverLetterDelete,
+  coverLetters,
+} = require("../controllers/coverLetterController");
 const {
   getCoverLetterTemplate,
   coverLetterTemplate,
@@ -12,4 +15,5 @@ router
   .get(isAuthenticatedUser, getCoverLetterTemplate);
 router.route("/coverletterinfo").post(isAuthenticatedUser, coverLetterTemplate);
 router.route("/coverletter/:id").delete(isAuthenticatedUser, coverLetterDelete);
+router.route("/allcoverletter").get(coverLetters);
 module.exports = router;
