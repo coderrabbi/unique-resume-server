@@ -37,6 +37,10 @@ const coverLetterTemplateSchema = new mongoose.Schema({
     type: String,
     default: "",
   },
+  companyAddress: {
+    type: String,
+    default: "",
+  },
 });
 
 const CoverLetterTemplate = mongoose.model(
