@@ -10,7 +10,7 @@ const userRoute = require("./routes/userRoute");
 const cvRoute = require("./routes/cvRoute");
 const coverLetterRoute = require("./routes/coverLetterRoute");
 const resumeRoute = require("./routes/resumeRoute");
-// middlewere
+// middleware
 
 app.use(cors(corsOptions));
 app.use(bodyParser.json());
