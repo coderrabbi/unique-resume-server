@@ -5,6 +5,7 @@ const {
   createCheckout,
   createCheckoutSession,
 } = require("../controllers/paymentController");
+const sendPdfEmail = require("../controllers/sendPdfEmail");
 
 const {
   registerUser,
@@ -36,4 +37,5 @@ router.route("/allusers").get(allUser);
 router.route("/checkout").post(isAuthenticatedUser, createCheckoutSession);
 router.route("/user-delete").delete(isAuthenticatedUser, deleteUser);
 router.route("/delete-user/:id").delete(isAuthenticatedUser, userDelete);
+router.route("/sendemail").post(isAuthenticatedUser, sendPdfEmail);
 module.exports = router;

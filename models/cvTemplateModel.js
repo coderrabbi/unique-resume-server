@@ -9,6 +9,10 @@ const cvTemplateSchema = new mongoose.Schema({
     type: String,
     default: "",
   },
+  websites: {
+    type: Array,
+    default: [],
+  },
   email: { type: String, default: "" },
   imageUrl: { type: String, default: "" },
   mobileNumber: { type: String, default: "" },

@@ -119,7 +119,7 @@ const forgotPassword = async (req, res) => {
   const message = `Your password reset token is :- \n\n ${resetPasswordUrl} \n\nIf you have not requested this email then, please ignore it.`;
 
   try {
-    await sendEmail(user.email, `Ecommerce Password Recovery`, message);
+    await sendEmail(user.email, `Unique Resume Password Recovery`, message);
 
     res.status(200).json({
       success: true,
@@ -131,7 +131,7 @@ const forgotPassword = async (req, res) => {
 
     await user.save({ validateBeforeSave: false });
 
-    res.status(500).json(error.message);
+    res.status(500).json(error);
   }
 };
 // reset Password

@@ -6,7 +6,7 @@ const coverLetterSchema = new mongoose.Schema({
     default: "",
   },
   id: { type: Number },
-  img: { type: String, default: "" },
+  image: { type: String, default: "" },
 });
 
 const CoverLetter = mongoose.model("CoverLetter", coverLetterSchema);
