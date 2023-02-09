@@ -1,8 +1,19 @@
+const Resume = require("../models/allResumeModel");
 const ResumeTemplate = require("../models/resumeModel");
 
 const allResumeTemplate = async (req, res) => {
   const query = {};
   const cursor = await ResumeTemplate.find(query);
+  if (cursor) {
+    res.status(200).send(cursor);
+  } else {
+    res.status(404).send("faild to find data");
+  }
+};
+
+const allResume = async (req, res) => {
+  const query = {};
+  const cursor = await Resume.find(query);
   if (cursor) {
     res.status(200).send(cursor);
   } else {
@@ -79,6 +90,7 @@ const resumeTemplateDelete = async (req, res) => {
 };
 module.exports = {
   allResumeTemplate,
+  allResume,
   createReusmeTemplate,
   updateResume,
   getResumeTemplate,
