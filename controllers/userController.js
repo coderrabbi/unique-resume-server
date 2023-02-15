@@ -38,11 +38,11 @@ const loginUser = async (req, res) => {
     });
   }
   if (!email || !password) {
-    return res.status(400).json({ message: "please enter email and password" });
+    return res.status(400).json({ error: "please enter email and password" });
   }
   const isPasswordMatch = await user.comparePassword(password);
   if (!isPasswordMatch) {
-    return res.status(401).json({ message: "Invalid email or password" });
+    return res.status(401).json({ error: "Invalid email or password" });
   }
 
   const token = jwt.sign(
