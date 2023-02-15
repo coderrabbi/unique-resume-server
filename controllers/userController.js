@@ -6,7 +6,7 @@ const registerUser = async (req, res) => {
   const { email, password, name, userName } = req.body;
   let user = await User.findOne({ email });
   if (user) {
-    res.status(401).send("user already exists");
+    res.status(401).send({ message: "user already exists" });
   } else {
     user = new User({
       email,
@@ -18,7 +18,6 @@ const registerUser = async (req, res) => {
       { _id: user._id, name: user.name },
       process.env.JWT_SECRET_KEY
     );
-    console.log(token);
     await user.save((err, user) => {
       if (err) {
         res.status(400).send({ err: err.message });
