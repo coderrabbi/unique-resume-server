@@ -3,7 +3,7 @@ const jwt = require("jsonwebtoken");
 const sendEmail = require("../utils/sendEmail");
 const crypto = require("crypto");
 const registerUser = async (req, res) => {
-  const { email, password, name, userName } = req.body;
+  const { email, password, name, userName, imgUrl } = req.body;
   let user = await User.findOne({ email });
   if (user) {
     res.status(401).send({ message: "user already exists" });
@@ -13,6 +13,7 @@ const registerUser = async (req, res) => {
       password,
       name,
       userName,
+      imgUrl,
     });
     const token = jwt.sign(
       { _id: user._id, name: user.name },

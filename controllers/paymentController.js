@@ -38,4 +38,38 @@ const createCheckoutSession = async (req, res) => {
   }
 };
 
-module.exports = { checkoutSession, createCheckoutSession };
+const createCustomer = async (req, res) => {
+  const { name, email } = req.body;
+
+  res.send(customer);
+};
+
+const createSub = async (req, res) => {
+  const { priceId, name, email } = req.body;
+  const customer = await stripe.customers.create({
+    name: name,
+    email: email,
+    // payment_settings: {
+    //   payment_method_types: ["card", "ach_credit_transfer", "paper_check"],
+    // },
+  });
+
+  const subscription = await stripe.subscriptions.create({
+    customer: customer.id,
+    items: [{ price: priceId }],
+    payment_settings: {
+      payment_method_types: ["card"],
+    },
+    expand: ["latest_invoice.payment_intent"],
+  });
+
+  // return the client secret and subscription id
+  res.send(subscription);
+};
+
+module.exports = {
+  checkoutSession,
+  createCheckoutSession,
+  createCustomer,
+  createSub,
+};

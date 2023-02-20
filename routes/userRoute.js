@@ -4,6 +4,8 @@ const {
   addNewCustomer,
   createCheckout,
   createCheckoutSession,
+  createCustomer,
+  createSub,
 } = require("../controllers/paymentController");
 const sendPdfEmail = require("../controllers/sendPdfEmail");
 
@@ -35,6 +37,7 @@ router.route("/user-details").get(isAuthenticatedUser, getUserDetails);
 router.route("/allusers").get(allUser);
 // router.route("/subscription").post(isAuthenticatedUser, addNewCustomer);
 router.route("/checkout").post(isAuthenticatedUser, createCheckoutSession);
+router.route("/customer").post(isAuthenticatedUser, createSub);
 router.route("/user-delete").delete(isAuthenticatedUser, deleteUser);
 router.route("/delete-user/:id").delete(isAuthenticatedUser, userDelete);
 router.route("/sendemail").post(isAuthenticatedUser, sendPdfEmail);
